@@ -20,10 +20,14 @@ gem 'sidetiq'
 
 gem 'aws-sdk'
 gem 'chef', require: false
+gem 'commonmarker'
 gem 'compass-rails'
 gem 'ddtrace', require: false
 gem 'dotenv'
 gem 'foreman'
+gem 'gemoji'
+gem 'github-linguist'
+gem 'html-pipeline'
 gem 'html_truncator'
 gem 'jbuilder'
 gem 'kaminari'
@@ -37,10 +41,10 @@ gem 'pg_search'
 gem 'premailer-rails', group: [:development, :production]
 gem 'pundit'
 gem 'rb-readline'
-gem 'redcarpet' # markdown parsing
 gem 'redis-rails'
 gem 'rinku', require: 'rails_rinku'
 gem 'rollout'
+gem 'sanitize'
 gem 'sass-globbing'
 gem 'sass-rails'
 gem 'sentry-raven', require: false
