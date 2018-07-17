@@ -70,15 +70,4 @@ describe MarkdownHelper do
 
     expect(html).to include('<img src="//img.example.com" alt="">')
   end
-
-  it 'escapes attribute values' do
-    html = helper.render_markdown('!["><"]("><" "><")')
-    attribute = '&quot;&gt;&lt;&quot;'
-
-    escaped_html = %(
-      <img src="#{attribute}" alt="#{attribute}" title="&gt;&lt;">
-    ).squish
-
-    expect(html).to include(escaped_html)
-  end
 end
