@@ -54,20 +54,20 @@ describe MarkdownHelper do
     expect(helper.render_markdown('~~Ignore This~~')).to match(/<del>/)
   end
 
-  it 'uses protocol-relative URLs for images served over HTTP' do
-    html = helper.render_markdown('![](http://img.example.com)')
+  context 'protocol in URLs for images get converted' do
+    it 'HTTP -> protocol-relative' do
+      html = helper.render_markdown('![](http://img.example.com)')
+      expect(html).to include('<img src="//img.example.com" alt="">')
+    end
 
-    expect(html).to include('<img src="//img.example.com" alt="">')
+    it 'HTTPS -> protocol-relative' do
+      html = helper.render_markdown('![](https://img.example.com)')
+      expect(html).to include('<img src="//img.example.com" alt="">')
+    end
   end
 
   it 'prevents XSS attacks' do
     html = helper.render_markdown("<iframe src=javascript:alert('hahaha')></iframe>")
     expect(html).to match(/&lt;iframe src=javascript:alert\('hahaha'\)&gt;&lt;\/iframe&gt;/)
-  end
-
-  it 'uses protocol-relative URLs for images served over HTTPS' do
-    html = helper.render_markdown('![](https://img.example.com)')
-
-    expect(html).to include('<img src="//img.example.com" alt="">')
   end
 end
