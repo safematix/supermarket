@@ -62,7 +62,7 @@ describe MarkdownHelper do
 
   it 'prevents XSS attacks' do
     html = helper.render_markdown("<iframe src=javascript:alert('hahaha')></iframe>")
-    expect(html).to match(/&lt;iframe src=javascript:alert\(&#39;hahaha&#39;\)&gt;&lt;\/iframe&gt;/)
+    expect(html).to match(/&lt;iframe src=javascript:alert\('hahaha'\)&gt;&lt;\/iframe&gt;/)
   end
 
   it 'uses protocol-relative URLs for images served over HTTPS' do
