@@ -81,10 +81,10 @@ class Supermarket
     def self.audit_fips_config(config)
       if !built_with_fips?(config['install_directory'])
         if fips_enabled_in_kernel?
-          raise IncompatibleConfig.new "Detected FIPS is enabled in the kernel, but FIPS is not supported by this installer."
+          raise IncompatibleConfig.new 'Detected FIPS is enabled in the kernel, but FIPS is not supported by this installer.'
         end
         if config['fips_enabled']
-          raise IncompatibleConfig.new "You have enabled FIPS in your configuration, but FIPS is not supported by this installer."
+          raise IncompatibleConfig.new 'You have enabled FIPS in your configuration, but FIPS is not supported by this installer.'
         end
       end
     end
@@ -94,8 +94,8 @@ class Supermarket
     end
 
     def self.fips_enabled_in_kernel?
-      fips_path = "/proc/sys/crypto/fips_enabled"
-      (File.exist?(fips_path) && File.read(fips_path).chomp != "0")
+      fips_path = '/proc/sys/crypto/fips_enabled'
+      (File.exist?(fips_path) && File.read(fips_path).chomp != '0')
     end
 
     def self.maybe_turn_on_fips(node)
@@ -130,7 +130,7 @@ class Supermarket
     # If the value is a String or Number and the attribute name is attr_name.
     # Used to write out environment variables to a file.
     def self.environment_variables_from(attributes)
-      attributes.reduce "" do |str, attr|
+      attributes.reduce '' do |str, attr|
         if attr[1].is_a?(String) || attr[1].is_a?(Numeric) || attr[1] == true || attr[1] == false
           str << "export #{attr[0].upcase}=\"#{attr[1]}\"\n"
         else
